@@ -1,0 +1,58 @@
+name: Foundation checks
+on:
+  push:
+    branches: ["arena/52212c3f-ndc-room"]
+  pull_request:
+permissions:
+  contents: read
+concurrency:
+  group: foundation-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+      APP_ENV: production
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.22.3"
+          cache: npm
+      - name: Pin package manager
+        run: npm install --global npm@12.2.1
+      - name: Clean strict-alignment install
+        run: npm ci --strict-peer-deps --no-fund --no-audit
+      - name: Dependency tree
+        run: npm ls --all
+      - name: Source and documentation checks
+        run: |
+          python scripts/scan_secrets.py
+          python scripts/validate_docs.py
+          npm run lint
+          npm run typecheck
+      - name: Unit and component tests
+        run: npm test
+      - name: Production build and bundle budget
+        run: |
+          npm run build
+          npm run test:bundle
+      - name: High/critical dependency gate
+        run: npm run audit:gate
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Browser tests against production build
+        run: npm run test:e2e
+      - name: Retain test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: foundation-test-evidence
+          path: |
+            playwright-report/
+            test-results/
+            docs/phase-1/bundle-baseline.json
+          retention-days: 14
+          if-no-files-found: ignore

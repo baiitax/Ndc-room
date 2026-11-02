@@ -1,0 +1,34 @@
+{
+  "methodology": "Shared Next root JS plus unique client-reference chunks per route; gzip per file. Excludes polyfills, CSS, fonts, HTML, RSC, dynamic imports and network latency. Not a measured transfer size or performance result.",
+  "budgetKiB": 350,
+  "results": [
+    {
+      "route": "/central/dashboard",
+      "files": 12,
+      "rawBytes": 647383,
+      "gzipBytes": 202513,
+      "withinBudget": true
+    },
+    {
+      "route": "/zone/dashboard",
+      "files": 13,
+      "rawBytes": 658842,
+      "gzipBytes": 206613,
+      "withinBudget": true
+    },
+    {
+      "route": "/field/home",
+      "files": 12,
+      "rawBytes": 647383,
+      "gzipBytes": 202513,
+      "withinBudget": true
+    },
+    {
+      "route": "/login",
+      "files": 11,
+      "rawBytes": 605167,
+      "gzipBytes": 188703,
+      "withinBudget": true
+    }
+  ]
+}
