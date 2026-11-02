@@ -6,7 +6,7 @@ Updated: 2026-11-02 · Branch: `arena/52212c3f-ndc-room` · **Phase 1 foundation
 
 Phase 0 delivered the architecture/review package. The user then directed “Move to the next,” authorizing Phase 1 foundation work only. The repository now contains a Next.js application with 40 workspace routes, four account routes, public access/legal information and a process-health endpoint. Local production build, 34 unit/component tests and 35 browser tests passed; one mobile-only browser case is intentionally skipped on desktop. See [Phase 1 report](PHASE_COMPLETION_REPORTS/PHASE_1.md) for final evidence and exceptions.
 
-There is **no Supabase project/migration, authenticated session, operational schema, real record, evidence bucket, notification delivery, offline database, GIS data, production deployment or restore drill**. Remote CI status is tracked separately; a workflow file alone is not a green run.
+There is **no Supabase project/migration, authenticated session, operational schema, real record, evidence bucket, notification delivery, offline database, GIS data, production deployment or restore drill**. Remote CI is BLOCKED by GitHub App workflow permission; a template is delivered under `docs/phase-1/ci/`, not an active green run.
 
 Status definitions: VERIFIED IN CODE/DATABASE/UI/END-TO-END require executed evidence at that layer; ARCHITECTURALLY DEFINED = specified only; PLANNED = intended work; BLOCKED = named dependency; FAILED = executed check failed. A visible shell is not an operational module implementation.
 
@@ -15,7 +15,7 @@ Status definitions: VERIFIED IN CODE/DATABASE/UI/END-TO-END require executed evi
 | Phase | Status | Evidence / next gate |
 |---|---|---|
 | 0 Discovery/blueprint | DELIVERED; progression authorized | Controlled blueprint/PDF and validation; user authorized Phase 1; substantive operational approvals remain open |
-| 1 Foundation/design system | VERIFIED IN CODE/UI locally; review pending | Strict build/tests, three shells, design/environment/accessibility docs; dependency exceptions K24/K25; remote CI gate separate |
+| 1 Foundation/design system | VERIFIED IN CODE/UI locally; review pending | Strict build/tests, three shells, design/environment/accessibility docs; dependency exceptions K24/K25; remote CI gate BLOCKED by GitHub workflow permission |
 | 2 Database/auth/RLS | PLANNED | Requires explicit approval and isolated Supabase execution environment |
 | 3 Organization/agents | PLANNED | Official geography release still required for live acceptance |
 | 4 Field reporting | PLANNED | Durable receipt/offline tests planned |

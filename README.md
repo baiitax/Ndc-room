@@ -36,7 +36,7 @@ python scripts/scan_secrets.py
 python scripts/validate_docs.py
 ```
 
-See the [Phase 1 report](PHASE_COMPLETION_REPORTS/PHASE_1.md) for actual executed results and limitations. CI is defined in `docs/phase-1/ci/foundation.yml`; remote execution status is recorded there, not assumed from local tests. [Version exceptions](docs/phase-1/VERSION_DECISION.md) include TypeScript 6.0.3 and ESLint 9.39.5 for actual toolchain compatibility.
+See the [Phase 1 report](PHASE_COMPLETION_REPORTS/PHASE_1.md) for actual executed results and limitations. CI is defined in `docs/phase-1/ci/foundation.yml`; remote activation is currently blocked by GitHub App workflow permission; an authorized maintainer must install it before CI can run. [Version exceptions](docs/phase-1/VERSION_DECISION.md) include TypeScript 6.0.3 and ESLint 9.39.5 for actual toolchain compatibility.
 
 ## Phase 1 documentation
 

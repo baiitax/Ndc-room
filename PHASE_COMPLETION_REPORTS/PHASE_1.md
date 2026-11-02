@@ -1,6 +1,6 @@
 # Phase 1 Completion / Review Report
 
-Document: KEMSR-P1-REPORT · Date: 2026-11-02 · **FOUNDATION IMPLEMENTED — LOCAL CHECKS PASSED; REVIEW / REMOTE CI PENDING**
+Document: KEMSR-P1-REPORT · Date: 2026-11-02 · **FOUNDATION IMPLEMENTED — LOCAL CHECKS PASSED; REVIEW PENDING / REMOTE CI BLOCKED**
 
 ## Objective and scope
 
@@ -23,7 +23,7 @@ Implemented: pinned compatible application/toolchain; semantic light/dark/system
 | Operational modules | PLANNED | No backend or fake workflow enabled |
 | Database / Storage / Realtime | PLANNED | No project/migration/integration created |
 | Formal accessibility / physical-device coverage | NOT VERIFIED | Automated/keyboard subset only; see accessibility report |
-| Remote GitHub CI | PENDING | Workflow added; not yet executed remotely at this report revision |
+| Remote GitHub CI | BLOCKED | Workflow-permission rejection; template delivered under docs/phase-1/ci; no remote run |
 | Production / legal / geography readiness | BLOCKED / NOT VERIFIED | Existing Phase 0 operational gates remain |
 
 ## Executed local checks
@@ -87,7 +87,11 @@ Final local application/toolchain run on 2026-11-02 after all UI corrections:
 - `npm run test:e2e`: **35 PASS / 1 SKIP** (mobile-only case skipped on desktop), 36 total project cases. All 44 workspace/account routes reached; 320px primary-shell reflow/target checks passed; selected axe checks reported zero tagged-rule violations.
 - `npm run test:bundle`: **PASS** — central/field **202,513**, zone **206,613**, access information **188,703** gzip-accounted bytes; all below provisional 350 KiB budget. This is not measured field-network transfer.
 - `npm run audit:gate`: **PASS**, zero high/critical findings. `npm audit --omit=dev`: zero findings. Full audit: 16 moderate lint-tooling entries, disclosed as K25.
-- Documentation validator: **PASS**, 28 documents / 124 local links and all Phase 0 coverage checks. Conservative source secret scan: **PASS**, 122 nonignored file entries at capture; binary screenshots are not text-scanned. Python compilation and `git diff --check`: **PASS**.
-- Local production preview bound to `0.0.0.0:3000`; Arena reported no preview-breaking response. This is not a Vercel deployment.
+- Documentation validator: **PASS**, 28 documents / 124 local links and all Phase 0 coverage checks. Conservative source secret scan: **PASS**, 123 nonignored file entries at capture; binary screenshots are not text-scanned. Python compilation and `git diff --check`: **PASS**.
+- Local preview bound to `0.0.0.0:3000`; Arena reported no preview-breaking response. Live preview uses development mode for iframe/HMR compatibility; acceptance checks use a separate production server. This is not a Vercel deployment.
 
 Remote GitHub CI is **BLOCKED**, not passed. The initial branch push was rejected because the configured GitHub App lacks permission to create/update `.github/workflows/foundation.yml`. No credentials were requested or stored. The exact workflow is retained as a reviewed repository template at `docs/phase-1/ci/foundation.yml`; source can be delivered without attempting to bypass GitHub permissions. To activate it, an authorized repository maintainer must install it at `.github/workflows/foundation.yml`, or reconnect GitHub with workflow permission and authorize activation. No remote CI result is inferred from the template.
+
+## Delivery record
+
+Application, tests and Phase 0/1 documentation pushed to `arena/52212c3f-ndc-room` at source commit `00bf7a5`. The CI workflow is a repository template, not an active GitHub Actions workflow, because the GitHub App lacks workflow write permission. Remote CI is blocked and the phase is not marked unconditionally complete. Subsequent documentation-only commits may refine this record without changing the tested source.

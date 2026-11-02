@@ -52,7 +52,7 @@ python scripts/validate_docs.py
 - Self-hosted scripts/fonts/styles; no third-party runtime assets.
 - `nosniff`, strict referrer policy and disabled camera/microphone/geolocation permissions.
 - Production `frame-ancestors 'none'`, `X-Frame-Options: DENY`, `object-src 'none'`, restricted base/form targets and HTTPS upgrade.
-- Development permits Arena iframe embedding and HMR. Development origin exceptions are exact local test hosts plus Arena's `*.e2b.app`/`*.e2b.dev` preview suffixes. The application origin allowlist remains exact and separate.
+- Development permits Arena iframe embedding and HMR. Normal production denies framing. The Arena live preview therefore runs the development server; browser acceptance tests run an independent production build. Development origin exceptions are exact local test hosts plus Arena's `*.e2b.app`/`*.e2b.dev` preview suffixes. The application origin allowlist remains exact and separate.
 - CSP currently permits inline scripts/styles and development eval. **This is not a production-hardened nonce CSP.** Before authenticated/sensitive content in Phase 2, implement/test request nonces or hashes, remove the inline-script exception where feasible, restrict development eval and verify production framing/HSTS at the actual edge. Do not describe the current header policy as a completed security audit.
 
 ## Route protection contract
